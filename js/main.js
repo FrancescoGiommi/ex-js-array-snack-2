@@ -101,6 +101,22 @@ console.log(longBooksTitles[0], longBooksTitles[1]);
     Crea un array (discountedBooks) con gli availableBooks, ciascuno con il prezzo scontato del 20% (mantieni lo stesso formato e arrotonda al centesimo)
     Salva in una variabile (fullPricedBook) il primo elemento di discountedBooks che ha un prezzo intero (senza centesimi). */
 
+const availableBooks = books.filter((book) => book.available);
+console.log(availableBooks);
+
+const discountedBooks = availableBooks.map((book) => {
+  const priceNumber = Number(book.price.replace("€", ""));
+  const discountedPrice = (priceNumber - priceNumber * 0.2).toFixed(2) + "€";
+
+  return { ...book, price: discountedPrice };
+});
+console.log(discountedBooks);
+
+const fullPricedBook = discountedBooks.find((book) => {
+  const priceNumber = Number(book.price.replace("€", ""));
+  return Number.isInteger(priceNumber);
+});
+console.log(fullPricedBook);
 //! Snack 3 - Ordinare gli Autori
 
 /* Creare un array (authors) che contiene gli autori dei libri.
