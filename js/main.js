@@ -124,6 +124,15 @@ console.log(fullPricedBook);
     Ordina l’array authors in base all’età, senza creare un nuovo array.
     (se areAuthorsAdult è true, ordina in ordine crescente, altrimenti in ordine decrescente) */
 
+const authors = books.map((book) => book.author);
+console.log(authors);
+
+const areAuthorsAdult = authors.every((author) => author.age >= 18);
+console.log(areAuthorsAdult);
+
+const orderByAge = authors.sort((a, b) => b.age - a.age);
+console.log(orderByAge);
+
 //! Snack 3 - Calcola l’età media
 
 /* Creare un array (ages) che contiene le età degli autori dei libri.
