@@ -133,7 +133,7 @@ console.log(areAuthorsAdult);
 const orderByAge = authors.sort((a, b) => b.age - a.age);
 console.log(orderByAge);
 
-//! Snack 3 - Calcola l’età media
+//! Snack 4 - Calcola l’età media
 
 /* Creare un array (ages) che contiene le età degli autori dei libri.
     Calcola la somma delle età (agesSum) usando reduce.
@@ -150,3 +150,25 @@ console.log(agesSum);
 
 const avgAgeAuthors = agesSum / ages.length;
 console.log(`L'età media degli autori è ${avgAgeAuthors} anni`);
+
+//! Snack 5 (Bonus) - Raccogli i libri
+
+/* Usando la l'API https://boolean-spec-frontend.vercel.app/freetestapi/books/{id}
+usa la combinazione di .map() e Promise.all(), per creare una funzione (getBooks) che a partire da un array di id (ids), 
+ritorna una promise che risolve un array di libri (books).
+
+Testala con l’array [2, 13, 7, 21, 19] . */
+
+const ids = [2, 13, 7, 21, 19];
+
+const getBooks = async (ids) => {
+  const bookUrl = "https://boolean-spec-frontend.vercel.app/freetestapi/books/";
+  const bookPromise = ids.map((id) =>
+    fetch(`${bookUrl}${id}`).then((res) => res.json())
+  );
+  return await Promise.all(bookPromise);
+};
+
+getBooks(ids)
+  .then((books) => console.log(books))
+  .catch((error) => console.log(error));
